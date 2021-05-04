@@ -1,0 +1,14 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "no-underscore-dangle": "off",
+    "object-curly-spacing": ["error", "never"],
+    "func-names": "off",
+    "consistent-return": "off",
+    "no-param-reassign": "off",
+    "linebreak-style": "off"
+  },
+  "env": {
+    "jest": true
+  }
+}
