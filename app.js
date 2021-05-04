@@ -2,13 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
-// const cors = require('cors');
+const cors = require('cors');
 require('dotenv').config();
 
 const {thirdPartyLibErrorHandler} = require('./utils/utils');
 const auth = require('./middlewares/auth');
 const {errorHandler} = require('./middlewares/error-handler');
 const {requestLogger, errorLogger} = require('./middlewares/logger');
+const {frontendLinks} = require('./utils/config');
 const NotFoundError = require('./errors/NotFoundError');
 
 const {dbConnectionLink} = require('./utils/config');
@@ -17,7 +18,6 @@ const rateLimiter = require('./middlewares/rate-limiter');
 const app = express();
 
 const {PORT = 3000} = process.env;
-// const frontendLinks = /.*\/\/*.danilshvalov.mesto.nomoredomains.icu/;
 
 mongoose.connect(dbConnectionLink, {
   useNewUrlParser: true,
@@ -26,12 +26,14 @@ mongoose.connect(dbConnectionLink, {
   useUnifiedTopology: true,
 });
 
-// app.use(cors({
-//   origin: frontendLinks,
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   credentials: true,
-//   allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
-// }));
+app.use(
+  cors({
+    origin: frontendLinks,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
+  }),
+);
 
 app.use(rateLimiter);
 app.use(helmet());
