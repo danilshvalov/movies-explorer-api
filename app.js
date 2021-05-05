@@ -6,11 +6,10 @@ const cors = require('cors');
 require('dotenv').config();
 
 const {thirdPartyLibErrorHandler} = require('./utils/utils');
-const auth = require('./middlewares/auth');
 const {errorHandler} = require('./middlewares/error-handler');
 const {requestLogger, errorLogger} = require('./middlewares/logger');
 const {frontendLinks} = require('./utils/config');
-const NotFoundError = require('./errors/NotFoundError');
+const router = require('./routes/index');
 
 const {dbConnectionLink} = require('./utils/config');
 const rateLimiter = require('./middlewares/rate-limiter');
@@ -44,13 +43,7 @@ app.use(thirdPartyLibErrorHandler);
 
 app.use(requestLogger);
 
-app.use(require('./routes/auth'));
-app.use('/users', auth, require('./routes/user'));
-app.use('/movies', auth, require('./routes/movie'));
-
-app.use('*', (req, res, next) => {
-  next(new NotFoundError('Ничего не найдено. Проверьте путь и метод запроса'));
-});
+app.use(router);
 
 app.use(errorLogger);
 
