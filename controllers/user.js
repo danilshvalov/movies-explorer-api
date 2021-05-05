@@ -61,6 +61,8 @@ module.exports.createUser = (req, res, next) => {
         throw new BadRequestError('Переданы некорректные данные для создания пользователя');
       } else if (err.name === 'MongoError' && err.code === 11000) {
         throw new ConflictError(`Пользователь с email «${email}» уже существует`);
+      } else {
+        throw new InternalServerError(errorMessages.internalServer);
       }
     })
     .catch(next);
@@ -68,6 +70,7 @@ module.exports.createUser = (req, res, next) => {
 
 module.exports.updateUser = (req, res, next) => {
   const {email, name} = req.body;
+  // User.update
   User.findByIdAndUpdate(req.user._id, {email, name}, updateParams)
     .then((data) => {
       res.send(takeProfileData(data));
@@ -75,6 +78,10 @@ module.exports.updateUser = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         throw new BadRequestError('Переданы некорректные данные для обновления профиля');
+      } else if (err.codeName === 'DuplicateKey') {
+        throw new ConflictError('Пользователь с таким email уже существует');
+      } else {
+        throw new InternalServerError(errorMessages.internalServer);
       }
     })
     .catch(next);
