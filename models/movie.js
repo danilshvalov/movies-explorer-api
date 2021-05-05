@@ -62,12 +62,12 @@ movieSchema.statics.deleteAsOwner = function ({movieId, userId}) {
   }
   return this.findById(movieId).then((movie) => {
     if (!movie) {
-      throw new NotFoundError(`Карточка с id «${movieId}» не найдена`);
+      throw new NotFoundError(`Фильм с id «${movieId}» не найден`);
     }
     // сравнение не строгое, так как сравниваем разные типы
     // eslint-disable-next-line eqeqeq
     if (movie.owner != userId) {
-      throw new ForbiddenError('У вас недостаточно прав для удаления этой карточки');
+      throw new ForbiddenError('У вас недостаточно прав для удаления этого фильма');
     }
     return this.findByIdAndDelete(movieId);
   });
