@@ -70,7 +70,6 @@ module.exports.createUser = (req, res, next) => {
 
 module.exports.updateUser = (req, res, next) => {
   const {email, name} = req.body;
-  // User.update
   User.findByIdAndUpdate(req.user._id, {email, name}, updateParams)
     .then((data) => {
       res.send(takeProfileData(data));
@@ -93,7 +92,6 @@ module.exports.login = (req, res, next) => {
   User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({_id: user._id}, secretKey, {expiresIn: tokenDuration});
-
       res
         .cookie('jwt', token, {
           maxAge: tokenDuration,
