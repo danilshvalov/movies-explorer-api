@@ -1,6 +1,9 @@
 {
   "name": "movie-explorer-api",
-  "author": "Danil Shvalov",
+  "author": {
+    "name": "Danil Shvalov",
+    "email": "daniil.shvalov@gmail.com"
+  },
   "devDependencies": {
     "eslint": "^7.25.0",
     "eslint-config-airbnb-base": "^14.2.1",
