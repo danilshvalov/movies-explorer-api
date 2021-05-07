@@ -1,7 +1,7 @@
 # Техническая документация `Movies Explorer`
 
 IP адрес сервера: `84.201.181.239`
-URI: `api.ds.movies-explorer.nomoredomains.icu`
+URI: `https://api.ds.movies-explorer.nomoredomains.icu`
 
 ## Содержание
 [](#директории)
