@@ -1,0 +1,16 @@
+module.exports.incorrectEmail = 'Передан некорректный email';
+module.exports.incorrectPassword = 'Передан некорректный пароль';
+module.exports.incorrectName = 'Передано некорректное имя';
+module.exports.unAuthorized = 'Необходима авторизация';
+module.exports.incorrectId = 'Передан некорректный ID';
+module.exports.incorrectCountry = 'Передана некорректная страна';
+module.exports.incorrectDirector = 'Передан некорректный режиссёр';
+module.exports.incorrectDuration = 'Передана некорректная длительность фильма';
+module.exports.incorrectYear = 'Передан некорректный год';
+module.exports.incorrectDescription = 'Передано некорректное описание';
+module.exports.incorrectRussianName = 'Передано некорректное название на русском';
+module.exports.incorrectEnglishName = 'Передано некорректное название на английском';
+module.exports.incorrectImage = 'Передана некорректная ссылка на изображение';
+module.exports.incorrectTrailer = 'Передана некорректная ссылка на трейлер';
+module.exports.incorrectThumbnail = 'Передана некорректная ссылка на постер';
+module.exports.internalServer = 'Произошла непредвиденная ошибка. Проверьте правильность запроса';
