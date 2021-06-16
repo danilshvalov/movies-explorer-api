@@ -10,7 +10,7 @@ const {dbConnectionLink} = require('./utils/config');
 
 const app = express();
 
-const {PORT = 3000} = process.env;
+const {PORT = 5000} = process.env;
 
 mongoose.connect(dbConnectionLink, {
   useNewUrlParser: true,

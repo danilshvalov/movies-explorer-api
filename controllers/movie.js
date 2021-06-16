@@ -6,6 +6,7 @@ module.exports.getUserMovies = (req, res, next) => Movie.find({owner: req.user._
 
 module.exports.createMovie = (req, res, next) => {
   const {
+    movieId,
     country,
     director,
     duration,
@@ -20,6 +21,7 @@ module.exports.createMovie = (req, res, next) => {
 
   Movie.create({
     owner: req.user._id,
+    movieId,
     country,
     director,
     duration,
@@ -37,7 +39,7 @@ module.exports.createMovie = (req, res, next) => {
 
 module.exports.deleteMovie = (req, res, next) => {
   const {movieId} = req.params;
-  Movie.deleteAsOwner({movieId, userId: req.user._id})
+  Movie.deleteAsOwner({id: movieId, userId: req.user._id})
     .then((data) => res.send(data))
     .catch(next);
 };
